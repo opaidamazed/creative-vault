@@ -1,0 +1,99 @@
+/* ==========================================================
+   Creative Vault — لوحة التحكم
+   ========================================================== */
+body[data-page="admin"]{min-height:100vh}
+.login-wrap{min-height:100vh;display:grid;place-items:center;padding:24px}
+.login-card{
+  width:min(440px,100%);text-align:center;display:grid;gap:14px;justify-items:center;
+  background:linear-gradient(180deg,var(--card-2),var(--card));border:1px solid var(--line);border-radius:22px;padding:34px 28px;
+  box-shadow:0 20px 60px rgba(0,0,0,.45);
+}
+.login-card h1{font-size:1.4rem;font-weight:900}
+.login-card p{color:var(--muted)}
+.login-card code,.seed code{background:rgba(255,255,255,.08);padding:1px 7px;border-radius:6px;font-family:'Inter',monospace;font-size:.85em}
+.err{color:#ff8a8a;font-weight:700}
+
+.adm-head{position:sticky;top:0;z-index:20;background:rgba(15,5,36,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.adm-head-in{display:flex;align-items:center;gap:12px;height:60px}
+.adm-head-in .who{margin-inline-start:auto;color:var(--muted);font-size:.82rem;direction:ltr;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.btn-s,.btn-g{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 16px;border-radius:10px;
+  font-weight:800;font-size:.86rem;transition:.2s;white-space:nowrap;
+}
+.btn-s{border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.05)}
+.btn-s:hover{border-color:var(--purple-2);background:rgba(139,61,255,.25)}
+.btn-g{background:var(--green);color:#06210f;border:1px solid var(--green)}
+.btn-g:hover{box-shadow:0 0 22px rgba(34,242,122,.5)}
+.btn-s.danger:hover{border-color:#ff6b6b;background:rgba(255,107,107,.18)}
+button:disabled{opacity:.55;cursor:wait}
+
+.adm-main{padding-block:26px 60px}
+.tabs{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+.tab{padding:9px 20px;border-radius:12px;border:1px solid var(--line);font-weight:800;color:var(--muted);transition:.2s}
+.tab.on{color:var(--green);border-color:var(--green);background:rgba(34,242,122,.08)}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.panel-head h2{font-size:1.2rem;font-weight:900}
+
+.rows{display:grid;gap:12px}
+.row{
+  display:grid;grid-template-columns:72px 1fr auto;gap:14px;align-items:center;
+  background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;
+}
+.row .pic{width:72px;height:72px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#3b138f,#14062e 55%,#0f7a43);display:grid;place-items:center}
+.row .pic img{width:100%;height:100%;object-fit:cover}
+.row h4{font-weight:800;font-size:1rem;margin-bottom:2px}
+.row small{color:var(--muted);display:block}
+.row .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.tag{font-size:.72rem;font-weight:800;padding:2px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.tag.g{color:#06210f;background:var(--green);border-color:var(--green)}
+.acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.acts .btn-s{padding:7px 12px}
+.seed{margin-top:16px;padding:18px;border:1px dashed var(--green);border-radius:14px;display:grid;gap:10px;justify-items:start}
+.empty-row{color:var(--muted);text-align:center;padding:26px;border:1px dashed var(--line);border-radius:14px}
+
+/* ---------- forms ---------- */
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.form-grid .full{grid-column:1/-1}
+.form-grid label{display:grid;gap:6px;font-weight:700;font-size:.86rem;color:var(--muted)}
+.form-grid input:not([type=checkbox]):not([type=file]),.form-grid textarea,.form-grid select{
+  width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;
+  padding:10px 12px;color:var(--text);font:inherit;font-size:.92rem;outline:0;
+}
+.form-grid input:focus,.form-grid textarea:focus,.form-grid select:focus{border-color:var(--purple-2);box-shadow:0 0 0 3px rgba(139,61,255,.2)}
+.form-grid select option{background:var(--card)}
+.form-grid .check{display:flex;align-items:center;gap:8px;align-self:end;padding-bottom:10px;color:var(--text)}
+.form-grid .check input{width:18px;height:18px;accent-color:var(--green)}
+.img-box{display:grid;gap:8px;color:var(--muted);font-weight:700;font-size:.86rem}
+.img-box small{font-weight:600;font-size:.78rem}
+.img-row{display:flex;gap:14px;align-items:flex-start}
+.img-row img{width:110px;height:110px;object-fit:cover;border-radius:12px;border:1px solid var(--line);background:var(--card)}
+.img-ctl{display:grid;gap:8px;flex:1;min-width:0}
+.img-ctl input[type=file]{color:var(--muted);font:inherit;font-size:.85rem}
+.img-ctl input[name=imgText]{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;padding:9px 12px;color:var(--text);font:inherit;font-size:.85rem;direction:ltr}
+
+dialog{
+  margin:auto;width:min(680px,calc(100% - 24px));max-height:92vh;overflow:auto;
+  background:var(--bg-2);color:var(--text);border:1px solid var(--line);border-radius:20px;padding:0;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+}
+dialog::backdrop{background:rgba(6,2,16,.75);backdrop-filter:blur(3px)}
+.dlg-form{padding:24px}
+.dlg-form h3{font-size:1.2rem;font-weight:900;margin-bottom:16px}
+.dlg-actions{display:flex;gap:10px;margin-top:20px}
+dialog[data-kind="lib"] [data-for="item"],dialog[data-kind="item"] [data-for="lib"]{display:none}
+
+.toast{
+  position:fixed;bottom:24px;left:50%;translate:-50% 20px;opacity:0;pointer-events:none;z-index:99;
+  background:var(--card-2);border:1px solid var(--green);color:var(--text);padding:12px 22px;border-radius:12px;font-weight:700;
+  transition:.3s;max-width:calc(100% - 32px);text-align:center;
+}
+.toast.show{opacity:1;translate:-50% 0}
+.toast.bad{border-color:#ff6b6b}
+
+@media (max-width:640px){
+  .form-grid{grid-template-columns:1fr}
+  .row{grid-template-columns:56px 1fr}
+  .row .pic{width:56px;height:56px}
+  .acts{grid-column:1/-1;justify-content:flex-start}
+  .adm-head-in .who{display:none}
+}

@@ -240,7 +240,6 @@ button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
   .main-nav .nav-link{padding:12px 14px}
   .lib-grid{grid-template-columns:1fr;max-width:460px;margin-inline:auto}
   .lib-card.featured{order:-1}
-  .slider{aspect-ratio:16/8}
   .hero-cta{padding:9px 18px;font-size:.85rem;left:3%;bottom:14%}
   .arrow{display:none}
   .l-card{flex-basis:70%}
