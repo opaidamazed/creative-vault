@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Creative Vault | المكتبة الذكية للمؤثرات الصوتية</title>
+  <meta name="description" content="مكان ثابت لتحميل ملحقات وموارد التصميم والمونتاج: مؤثرات صوتية وموسيقى ومكتبة كاملة.">
+  <meta name="theme-color" content="#14062e">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== Header ===================== -->
+<header class="site-header" id="top">
+  <div class="container header-inner">
+
+    <a href="#top" class="brand" aria-label="Creative Vault">
+      <img src="assets/logo.png" alt="" class="brand-logo" onerror="this.style.display='none'">
+      <span class="brand-text"><span>Creative</span><span class="g">Vault</span></span>
+    </a>
+
+    <nav class="main-nav" id="mainNav" aria-label="القائمة الرئيسية">
+      <a href="#top" class="nav-link active"><svg class="i"><use href="#i-home"/></svg>الرئيسية</a>
+      <a href="#libraries" class="nav-link"><svg class="i"><use href="#i-grid"/></svg>المكتبة</a>
+      <a href="#latest" class="nav-link"><svg class="i"><use href="#i-sparkle"/></svg>أحدث الإضافات</a>
+      <a href="#about" class="nav-link"><svg class="i"><use href="#i-info"/></svg>حول الموقع</a>
+      <a href="#" id="contactLink" class="nav-link"><svg class="i"><use href="#i-mail"/></svg>تواصل معنا</a>
+    </nav>
+
+    <form class="search" id="searchForm" role="search">
+      <svg class="i"><use href="#i-search"/></svg>
+      <input type="search" id="searchInput" placeholder="ابحث في المكتبة..." autocomplete="off" aria-label="بحث">
+    </form>
+
+    <button class="menu-btn" id="menuBtn" aria-label="القائمة" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== Hero Slider ===================== -->
+<section class="hero" aria-label="البنرات">
+  <div class="slider" id="slider">
+    <div class="slides" id="slides"></div>
+    <button class="arrow prev" id="prevBtn" aria-label="السابق"><svg class="i"><use href="#i-chev-r"/></svg></button>
+    <button class="arrow next" id="nextBtn" aria-label="التالي"><svg class="i"><use href="#i-chev-l"/></svg></button>
+    <a href="#libraries" class="btn btn-green hero-cta"><svg class="i"><use href="#i-down"/></svg>استكشف المكتبة</a>
+    <div class="dots" id="dots"></div>
+  </div>
+</section>
+
+<!-- ===================== Libraries ===================== -->
+<section class="section" id="libraries">
+  <div class="container">
+    <div class="eyebrow"><span>مكتبتنا المميزة</span></div>
+    <h2 class="section-title">اختر ما تحتاجه من مكتبات الملحقات</h2>
+    <div class="lib-grid" id="libGrid"></div>
+  </div>
+</section>
+
+<!-- ===================== Latest ===================== -->
+<section class="section" id="latest">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="line-title"><span>أحدث <b>الإضافات</b></span></h2>
+    </div>
+    <div class="carousel-wrap">
+      <button class="c-arrow c-prev" id="cPrev" aria-label="السابق"><svg class="i"><use href="#i-chev-r"/></svg></button>
+      <div class="carousel" id="latestList" tabindex="0"></div>
+      <button class="c-arrow c-next" id="cNext" aria-label="التالي"><svg class="i"><use href="#i-chev-l"/></svg></button>
+    </div>
+    <p class="empty" id="noResults" hidden>مفيش نتائج مطابقة للبحث.</p>
+  </div>
+</section>
+
+<!-- ===================== Why ===================== -->
+<section class="section" id="why">
+  <div class="container">
+    <h2 class="line-title"><span>لماذا <b class="en">Creative Vault</b> ؟</span></h2>
+    <div class="features" id="features"></div>
+  </div>
+</section>
+
+<!-- ===================== About banner ===================== -->
+<section class="section about" id="about">
+  <div class="container">
+    <div class="about-banner">
+      <img id="aboutImg" src="assets/about-banner.webp" alt="عن Creative Vault — Designed with love by Obaida" loading="lazy">
+      <a href="#" id="aboutMore" class="hit hit-more" aria-label="تعرف على المزيد"></a>
+      <a href="#" data-social="youtube"   class="hit hit-yt" target="_blank" rel="noopener" aria-label="يوتيوب"></a>
+      <a href="#" data-social="facebook"  class="hit hit-fb" target="_blank" rel="noopener" aria-label="فيسبوك"></a>
+      <a href="#" data-social="instagram" class="hit hit-ig" target="_blank" rel="noopener" aria-label="انستجرام"></a>
+      <a href="#" data-social="telegram"  class="hit hit-tg" target="_blank" rel="noopener" aria-label="تليجرام"></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== Footer ===================== -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="f-brand">
+      <img src="assets/logo.png" alt="" class="brand-logo" onerror="this.style.display='none'">
+      <div>
+        <div class="brand-text"><span>Creative</span><span class="g">Vault</span></div>
+        <small>Your Creative Resources Hub</small>
+      </div>
+    </div>
+    <nav class="f-links" aria-label="روابط الفوتر">
+      <a href="#top">الرئيسية</a>
+      <a href="#libraries">المكتبة</a>
+      <a href="#about">حول الموقع</a>
+      <a href="#" id="contactLink2">تواصل معنا</a>
+    </nav>
+    <p class="copy">© <span id="year">2026</span> Creative Vault. جميع الحقوق محفوظة.</p>
+    <button class="to-top" id="toTop" aria-label="للأعلى"><svg class="i"><use href="#i-up"/></svg></button>
+  </div>
+</footer>
+
+<!-- ===================== SVG icons ===================== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></g></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></g></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></g></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></g></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V6m0 0l-6 6m6-6l6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5"/></g></symbol>
+    <symbol id="i-disk" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></g></symbol>
+    <symbol id="i-fire" viewBox="0 0 24 24"><path d="M12 2c1 4 5 5 5 10a5 5 0 01-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-4-1-6 1-9z" fill="currentColor"/></symbol>
+    <symbol id="i-headphones" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0116 0v3"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></g></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6z" fill="currentColor"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5L16 9.5"/></g></symbol>
+    <symbol id="i-infinity" viewBox="0 0 24 24"><path d="M12 12c-2-3-3.5-4-5.5-4a4 4 0 000 8c2 0 3.5-1 5.5-4zm0 0c2 3 3.5 4 5.5 4a4 4 0 000-8c-2 0-3.5 1-5.5 4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-thumb" viewBox="0 0 24 24"><path d="M7 11v9H4v-9zm0 0l4-8c1.5 0 2.5 1 2.5 2.5V9h5a2 2 0 012 2.3l-1 6.5A2 2 0 0117.5 19H7" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
