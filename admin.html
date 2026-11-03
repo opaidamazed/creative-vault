@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>لوحة التحكم | Creative Vault</title>
+  <meta name="theme-color" content="#14062e">
+  <link rel="icon" href="assets/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body data-page="admin">
+
+<!-- لو Firebase مش متفعل -->
+<section class="login-wrap" id="setupMsg" hidden>
+  <div class="login-card">
+    <h1>Firebase مش متفعل لسه</h1>
+    <p>املا بيانات مشروعك في <code>js/firebase-config.js</code> وفعّل Firestore وتسجيل الدخول بجوجل، وبعدين ارجع للصفحة دي. الخطوات كاملة في ملف <code>SETUP-AR.md</code>.</p>
+    <a class="btn btn-green" href="index.html">الرجوع للموقع</a>
+  </div>
+</section>
+
+<!-- تسجيل الدخول -->
+<section class="login-wrap" id="loginView">
+  <div class="login-card">
+    <img src="assets/logo.png" alt="" class="brand-logo" onerror="this.style.display='none'">
+    <h1>لوحة تحكم <span class="g en">Creative Vault</span></h1>
+    <p>سجّل الدخول بحساب جوجل الخاص بالأدمن.</p>
+    <button class="btn btn-green" id="loginBtn" type="button">تسجيل الدخول بجوجل</button>
+    <p class="err" id="loginErr" hidden></p>
+  </div>
+</section>
+
+<!-- اللوحة -->
+<div id="appView" hidden>
+  <header class="adm-head">
+    <div class="container adm-head-in">
+      <strong class="en">Creative <span class="g">Vault</span> · Admin</strong>
+      <span class="who" id="who"></span>
+      <a class="btn-s" href="index.html" target="_blank" rel="noopener">عرض الموقع</a>
+      <button class="btn-s" id="logoutBtn" type="button">خروج</button>
+    </div>
+  </header>
+
+  <main class="container adm-main">
+    <nav class="tabs" role="tablist">
+      <button class="tab on" data-tab="libs" role="tab">المكتبات</button>
+      <button class="tab" data-tab="items" role="tab">الإضافات الجديدة</button>
+      <button class="tab" data-tab="settings" role="tab">الإعدادات</button>
+    </nav>
+
+    <section class="panel" id="tab-libs">
+      <div class="panel-head"><h2>المكتبات الأساسية</h2><button class="btn-g" data-add="lib" type="button">+ إضافة مكتبة</button></div>
+      <div id="libsList" class="rows"></div>
+      <div id="seedBox" class="seed" hidden>
+        <p>لسه مفيش مكتبات متخزنة في Firebase. تقدر تستورد المكتبات الثلاثة والإعدادات الحالية من <code>config.js</code> بضغطة واحدة.</p>
+        <button class="btn-g" id="seedBtn" type="button">استيراد الإعدادات الافتراضية</button>
+      </div>
+    </section>
+
+    <section class="panel" id="tab-items" hidden>
+      <div class="panel-head"><h2>أحدث الإضافات</h2><button class="btn-g" data-add="item" type="button">+ إضافة ملحق</button></div>
+      <div id="itemsList" class="rows"></div>
+    </section>
+
+    <section class="panel" id="tab-settings" hidden>
+      <div class="panel-head"><h2>التواصل والسوشيال</h2></div>
+      <form id="settingsForm" class="form-grid">
+        <label>لينك "تواصل معنا"<input name="contactUrl" type="url" placeholder="https://wa.me/..."></label>
+        <label>يوتيوب<input name="youtube" type="url" placeholder="https://youtube.com/..."></label>
+        <label>فيسبوك<input name="facebook" type="url" placeholder="https://facebook.com/..."></label>
+        <label>انستجرام<input name="instagram" type="url" placeholder="https://instagram.com/..."></label>
+        <label>تليجرام<input name="telegram" type="url" placeholder="https://t.me/..."></label>
+        <div class="full"><button class="btn-g" type="submit">حفظ الإعدادات</button></div>
+      </form>
+    </section>
+  </main>
+</div>
+
+<!-- نافذة الإضافة/التعديل -->
+<dialog id="dlg" data-kind="lib">
+  <form id="editForm" class="dlg-form">
+    <h3 id="dlgTitle"></h3>
+    <div class="form-grid">
+      <label class="full">العنوان *<input name="title" required maxlength="80"></label>
+      <label class="full" data-for="lib">الوصف<textarea name="desc" rows="2" maxlength="200"></textarea></label>
+      <label class="full">لينك التحميل *<input name="url" type="url" required placeholder="https://drive.google.com/..."></label>
+      <label>الحجم<input name="size" placeholder="120 MB"></label>
+
+      <label data-for="lib">عدد الملفات<input name="count" placeholder="50"></label>
+      <label data-for="lib">الوحدة<input name="countLabel" placeholder="ملف"></label>
+      <label data-for="lib">نص الزرار<input name="buttonText" placeholder="تحميل ..."></label>
+      <label data-for="lib">الترتيب<input name="order" type="number" min="0" step="1"></label>
+      <label data-for="lib">شارة مميزة<input name="badge" placeholder="الأكثر تحميلاً"></label>
+      <label class="check" data-for="lib"><input name="featured" type="checkbox"> كارت مميز (إطار أخضر)</label>
+
+      <label data-for="item">التصنيف
+        <select name="category">
+          <option value="sfx">مؤثرات صوتية</option><option value="music">موسيقى</option>
+          <option value="video">فيديو وخامات</option><option value="design">تصميم</option><option value="other">أخرى</option>
+        </select>
+      </label>
+      <label class="check" data-for="item"><input name="isNew" type="checkbox"> علامة NEW</label>
+
+      <div class="full img-box">
+        <span id="imgLabel">الصورة</span>
+        <div class="img-row">
+          <img id="imgPrev" alt="" hidden>
+          <div class="img-ctl">
+            <input id="imgFile" type="file" accept="image/*">
+            <input name="imgText" placeholder="أو اكتب مسار/لينك صورة (assets/..., https://...)">
+            <button class="btn-s" id="imgClear" type="button">إزالة الصورة</button>
+          </div>
+        </div>
+        <small>الصورة المرفوعة بتتصغّر وتتخزن جوه قاعدة البيانات تلقائياً (من غير Storage).</small>
+      </div>
+    </div>
+    <div class="dlg-actions">
+      <button class="btn-g" type="submit" id="saveBtn">حفظ</button>
+      <button class="btn-s" type="button" id="cancelBtn">إلغاء</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/config.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

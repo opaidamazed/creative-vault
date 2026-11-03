@@ -1,0 +1,37 @@
+rules_version = '2';
+
+// الصق الملف ده في: Firebase Console ← Firestore Database ← Rules ← Publish
+// وغيّر ADMIN_EMAIL_HERE لإيميل جوجل بتاعك (نفس الحساب اللي هتدخل به admin.html).
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'ADMIN_EMAIL_HERE'
+        && request.auth.token.email_verified == true;
+    }
+
+    // أي زائر يقدر يزوّد عدّاد التحميل بواحد، ولا يغيّر أي حقل تاني
+    function onlyDownloadsPlusOne() {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['downloads'])
+        && request.resource.data.downloads == resource.data.get('downloads', 0) + 1;
+    }
+
+    match /libraries/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+      allow update: if onlyDownloadsPlusOne();
+    }
+
+    match /latest/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+      allow update: if onlyDownloadsPlusOne();
+    }
+
+    match /settings/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>المكتبة | Creative Vault</title>
+  <meta name="description" content="كل مكتبات وملحقات Creative Vault في مكان واحد: مؤثرات صوتية، موسيقى، وإضافات جديدة باستمرار.">
+  <meta name="theme-color" content="#14062e">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body data-page="library">
+
+<div id="siteHeader"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <div class="eyebrow"><span>المكتبة</span></div>
+      <h1>كل ملحقات Creative Vault</h1>
+      <p>المكتبات الأساسية وكل الإضافات الجديدة في مكان واحد ثابت.</p>
+    </div>
+  </section>
+
+  <section class="section" id="libraries">
+    <div class="container">
+      <h2 class="line-title"><span>المكتبات <b>الأساسية</b></span></h2>
+      <div class="lib-grid" id="libGrid"></div>
+      <p class="size-note" id="sizeNote"></p>
+    </div>
+  </section>
+
+  <section class="section" id="results">
+    <div class="container">
+      <h2 class="line-title"><span>كل <b>الإضافات</b></span></h2>
+      <div class="toolbar">
+        <div class="chips" id="chips"></div>
+        <label class="sort">ترتيب:
+          <select id="sortSel">
+            <option value="new">الأحدث</option>
+            <option value="popular">الأكثر تحميلاً</option>
+            <option value="name">الاسم</option>
+          </select>
+        </label>
+      </div>
+      <div class="items-grid" id="itemsGrid"></div>
+      <p class="empty" id="emptyMsg" hidden></p>
+    </div>
+  </section>
+</main>
+
+<div id="siteFooter"></div>
+
+<script src="js/config.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/library.js"></script>
+</body>
+</html>
