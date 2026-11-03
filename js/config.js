@@ -44,7 +44,7 @@ window.VAULT_CONFIG = {
       countLabel: "ملف",
       size: "111 MB",
       buttonText: "تحميل مكتبة المؤثرات الصوتية",
-      url: "https://drive.google.com/file/d/1Fepe34wAjnjGvxvr5LapwSJ3o4rWC-XW/view?usp=drive_link",
+      url: "https://drive.google.com/file/d/1Fepe34wAjnjGvxvr5LapwSJ3o4rWC-XW/view?usp=sharing",
       featured: true,
       badge: "الأكثر تحميلاً"
     },
@@ -84,10 +84,10 @@ window.VAULT_CONFIG = {
 
   /* ---------- السوشيال ---------- */
   social: {
-    youtube:   "#",
-    facebook:  "#",
-    instagram: "#",
-    telegram:  "#"
+    youtube:   "https://www.youtube.com/@opaidamazed",
+    facebook:  "https://www.facebook.com/DeOpaida8",
+    instagram: "https://www.instagram.com/opaidamazed",
+    telegram:  "https://t.me/opaidamazed"
   },
 
   aboutUrl: "about.html",
