@@ -6,8 +6,8 @@
    من غير لوحة تحكم ولا عدّاد تحميلات.
    ========================================================== */
 window.FIREBASE_CONFIG = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAEG3NjLqB2qRwbfH2zGnT7LqyNlqP9j9U",
+  authDomain: "creative-vault-6b401.firebaseapp.com",
+  projectId: "creative-vault-6b401",
+  appId: "1:280510414280:web:7f01205824540e81da54fd"
 };
