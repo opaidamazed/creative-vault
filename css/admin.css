@@ -194,3 +194,101 @@ dialog[open]{animation:adm-dialog-in .25s ease-out}
   #libsList.is-grid .row .acts{gap:4px}
   #libsList.is-grid .row .acts .btn-s{font-size:.68rem;padding:6px}
 }
+
+
+/* ---------- Grid view layout fix: keep every control inside its card ---------- */
+#libsList.is-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  align-items:stretch;
+  gap:12px;
+}
+#libsList.is-grid .row{
+  width:100%;
+  min-width:0;
+  min-height:0;
+  aspect-ratio:1 / 1;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:64px auto minmax(0,1fr);
+  justify-items:center;
+  align-content:stretch;
+  justify-content:stretch;
+  gap:7px;
+  padding:12px;
+  overflow:hidden;
+  text-align:center;
+}
+#libsList.is-grid .row .pic{
+  width:64px;
+  height:64px;
+  margin:0 auto;
+  border-radius:15px;
+}
+#libsList.is-grid .row>div:nth-child(2){
+  width:100%;
+  min-width:0;
+  align-self:start;
+}
+#libsList.is-grid .row h4{
+  margin:0 0 2px;
+  font-size:.9rem;
+  line-height:1.35;
+  overflow-wrap:anywhere;
+}
+#libsList.is-grid .row small{
+  font-size:.72rem;
+  line-height:1.35;
+}
+#libsList.is-grid .row .tags{
+  justify-content:center;
+  gap:4px;
+  margin-top:5px;
+}
+#libsList.is-grid .row .tag{
+  padding:3px 7px;
+  font-size:.67rem;
+}
+#libsList.is-grid .row .acts{
+  width:100%;
+  min-width:0;
+  align-self:end;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:5px;
+  justify-content:stretch;
+  align-items:stretch;
+}
+#libsList.is-grid .row .acts .btn-s{
+  min-width:0;
+  min-height:30px;
+  padding:5px 4px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  white-space:nowrap;
+  font-size:.69rem;
+  line-height:1.2;
+}
+#libsList.is-grid .empty-row{
+  grid-column:1/-1;
+  aspect-ratio:auto;
+}
+@media(max-width:640px){
+  #libsList.is-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:9px;
+  }
+  #libsList.is-grid .row{
+    aspect-ratio:1 / 1;
+    padding:9px 7px;
+    gap:5px;
+    grid-template-rows:54px auto minmax(0,1fr);
+  }
+  #libsList.is-grid .row .pic{width:54px;height:54px}
+  #libsList.is-grid .row h4{font-size:.78rem}
+  #libsList.is-grid .row small{font-size:.65rem}
+  #libsList.is-grid .row .tag{font-size:.6rem;padding:2px 5px}
+  #libsList.is-grid .row .acts{gap:4px}
+  #libsList.is-grid .row .acts .btn-s{font-size:.62rem;min-height:27px;padding:4px 2px}
+}
