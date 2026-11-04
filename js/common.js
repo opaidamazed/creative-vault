@@ -13,6 +13,27 @@
   const isReal = (u) => !!u && u !== "#";
   const safeUrl = (u) => (/^\s*(javascript|data|vbscript):/i.test(u || "") ? "#" : (u || "#"));
   const safeImg = (u) => (/^\s*(javascript|vbscript):/i.test(u || "") ? "" : (u || ""));
+
+  /* ---------- لينكات التحميل: أكتر من لينك (كل واحد في سطر) + تحويل درايف للتحميل المباشر ---------- */
+  const parseUrls = (u) => String(u == null ? "" : u).split(/[\s,]+/).filter(Boolean);
+  const driveId = (u) => {
+    const m = String(u).match(/drive\.google\.com\/(?:file\/d\/|open\?(?:[^#]*&)?id=|uc\?(?:[^#]*&)?id=)([\w-]{10,})/);
+    return m ? m[1] : null;
+  };
+  const directUrl = (u) => {
+    const id = driveId(u);
+    return id ? `https://drive.usercontent.google.com/download?id=${id}&export=download&confirm=t` : u;
+  };
+  /* بيرجّع href + attributes الزرار: لو كل اللينكات ملفات درايف بيبقى تحميل مباشر، غير كده بيفتح اللينك في تبويب جديد */
+  const dlAttrs = (raw) => {
+    const orig = parseUrls(raw).map(safeUrl).filter(isReal);
+    if (!orig.length) return { href: "#", attrs: "" };
+    if (orig.every(driveId)) {
+      const urls = orig.map(directUrl);
+      return { href: urls[0], attrs: `data-urls="${esc(urls.join(" "))}" data-orig="${esc(orig[0])}"` };
+    }
+    return { href: orig[0], attrs: 'target="_blank" rel="noopener"' };
+  };
   const fmt = (n) => {
     n = +n || 0;
     if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M";
@@ -62,7 +83,7 @@
   const hostH = $("#siteHeader"), hostF = $("#siteFooter");
   if (hostH) {
     const links = [["home", "index.html", "home", "الرئيسية"], ["library", "library.html", "grid", "المكتبة"],
-                   ["about", "about.html", "info", "حول الموقع"], ["contact", "#", "mail", "تواصل معنا"]];
+                   ["about", "about.html", "info", "حول الموقع"], ["contact", "contact.html", "mail", "تواصل معنا"]];
     hostH.innerHTML = `
     <header class="site-header" id="top"><div class="container header-inner">
       <a href="index.html" class="brand" aria-label="Creative Vault">
@@ -70,7 +91,7 @@
         <span class="brand-text"><span>Creative</span><span class="g">Vault</span></span>
       </a>
       <nav class="main-nav" id="mainNav" aria-label="القائمة الرئيسية">
-        ${links.map(([k, h, ic, t]) => `<a href="${h}" ${k === "contact" ? 'id="contactLink"' : ""} class="nav-link${k === page ? " active" : ""}">${icon(ic)}${t}</a>`).join("")}
+        ${links.map(([k, h, ic, t]) => `<a href="${h}" class="nav-link${k === page ? " active" : ""}">${icon(ic)}${t}</a>`).join("")}
       </nav>
       <form class="search" id="searchForm" role="search">${icon("search")}
         <input type="search" id="searchInput" placeholder="ابحث في المكتبة..." autocomplete="off" aria-label="بحث">
@@ -86,7 +107,7 @@
         <div><div class="brand-text"><span>Creative</span><span class="g">Vault</span></div><small>Your Creative Resources Hub</small></div>
       </div>
       <nav class="f-links" aria-label="روابط الفوتر">
-        <a href="index.html">الرئيسية</a><a href="library.html">المكتبة</a><a href="about.html">حول الموقع</a><a href="#" id="contactLink2">تواصل معنا</a>
+        <a href="index.html">الرئيسية</a><a href="library.html">المكتبة</a><a href="about.html">حول الموقع</a><a href="contact.html">تواصل معنا</a>
       </nav>
       <p class="copy">© ${new Date().getFullYear()} Creative Vault. جميع الحقوق محفوظة.</p>
       <button class="to-top" id="toTop" aria-label="للأعلى">${icon("up")}</button>
@@ -121,7 +142,7 @@
   /* ---------- Cards ---------- */
   V.libCard = (l) => {
     const dl = +l.downloads || 0;
-    const url = safeUrl(l.url);
+    const link = dlAttrs(l.url);
     return `
     <article class="lib-card reveal ${l.featured ? "featured" : ""}" data-search="${esc((l.title || "") + " " + (l.desc || ""))}">
       ${l.featured && l.badge ? `<span class="badge">${esc(l.badge)} ${icon("fire")}</span>` : ""}
@@ -133,7 +154,7 @@
         <span>${icon("disk")}<bdi dir="ltr">${esc(l.size)}</bdi></span>
         ${dl > 0 ? `<span title="عدد مرات التحميل">${icon("down")}${fmt(dl)}</span>` : ""}
       </div>
-      <a class="btn btn-green dl" href="${esc(url)}" ${isReal(url) ? 'target="_blank" rel="noopener"' : ""} data-track="libraries" data-id="${esc(l.id)}">
+      <a class="btn btn-green dl" href="${esc(link.href)}" ${link.attrs} data-track="libraries" data-id="${esc(l.id)}">
         ${icon("down")}${esc(l.buttonText || "تحميل")}
       </a>
     </article>`;
@@ -141,11 +162,11 @@
 
   V.itemCard = (x) => {
     const dl = +x.downloads || 0;
-    const url = safeUrl(x.url);
+    const link = dlAttrs(x.url);
     const isNew = x.isNew || (x.createdAt && Date.now() - x.createdAt < 6048e5);
     const cat = CATS[x.category];
     return `
-    <a class="l-card reveal" href="${esc(url)}" ${isReal(url) ? 'target="_blank" rel="noopener"' : ""} data-track="latest" data-id="${esc(x.id)}" data-search="${esc((x.title || "") + " " + (cat || ""))}">
+    <a class="l-card reveal" href="${esc(link.href)}" ${link.attrs} data-track="latest" data-id="${esc(x.id)}" data-search="${esc((x.title || "") + " " + (cat || ""))}">
       <div class="l-thumb">
         ${x.thumb ? `<img src="${esc(safeImg(x.thumb))}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="thumb-ph">${icon("headphones")}</span>`}
         ${isNew ? '<span class="new-tag">NEW</span>' : ""}
@@ -164,6 +185,41 @@
     if (a && D) D.track(a.dataset.track, a.dataset.id);
   });
 
+  /* ---------- تحميل مباشر: بيبدأ من غير ما يفتح صفحة جوجل درايف، وبيدعم أكتر من ملف ---------- */
+  let dlToast = null, dlTimer = null;
+  function showDlToast(count, orig) {
+    if (!dlToast) {
+      dlToast = document.createElement("div");
+      dlToast.className = "dl-toast";
+      dlToast.setAttribute("role", "status");
+      document.body.appendChild(dlToast);
+    }
+    dlToast.textContent = count > 1
+      ? `بدأ تحميل ${count} ملفات... لو المتصفح سألك، اسمح بالتحميلات المتعددة.`
+      : "بدأ التحميل... لو ما بدأش خلال ثواني ";
+    if (count === 1) {
+      const a = document.createElement("a");
+      a.href = orig; a.target = "_blank"; a.rel = "noopener"; a.textContent = "افتح صفحة التحميل";
+      dlToast.appendChild(a);
+    }
+    requestAnimationFrame(() => dlToast.classList.add("show"));
+    clearTimeout(dlTimer);
+    dlTimer = setTimeout(() => dlToast.classList.remove("show"), 10000);
+  }
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("[data-urls]");
+    if (!a || e.button || e.ctrlKey || e.metaKey || e.shiftKey) return; // ctrl/كليك وسط: السلوك العادي
+    e.preventDefault();
+    const urls = a.dataset.urls.split(" ").filter(Boolean);
+    urls.forEach((u, i) => setTimeout(() => {
+      const f = document.createElement("iframe");
+      f.style.display = "none"; f.src = u;
+      document.body.appendChild(f);
+      setTimeout(() => f.remove(), 600000);
+    }, i * 1500));
+    showDlToast(urls.length, a.dataset.orig);
+  });
+
   /* ---------- Reveal on scroll ---------- */
   const rv = new IntersectionObserver((ents) => ents.forEach((en) => {
     if (en.isIntersecting) { en.target.classList.add("in"); rv.unobserve(en.target); }
@@ -177,11 +233,6 @@
 
   /* ---------- تحميل البيانات + تطبيق الإعدادات (سوشيال / تواصل) ---------- */
   function applyLinks() {
-    ["#contactLink", "#contactLink2"].forEach((s) => {
-      const a = $(s); if (!a) return;
-      a.href = safeUrl(V.contactUrl);
-      if (isReal(V.contactUrl)) { a.target = "_blank"; a.rel = "noopener"; }
-    });
     $$("[data-social]").forEach((a) => {
       const u = safeUrl(V.social[a.dataset.social]);
       a.href = u;
