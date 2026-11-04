@@ -165,7 +165,7 @@ No license file is currently included. Unless a license is added to this reposit
 ---
 
 <p align="center">
-  Made for creators, by creators.
+  Made for creators, by one creator.
   <br>
   <strong>Creative Vault</strong>
 </p>
