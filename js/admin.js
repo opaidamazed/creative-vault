@@ -20,6 +20,25 @@
   const db = D.db, auth = D.auth;
 
   let libs = [], items = [], settings = {};
+  let libsView = "list";
+  try { libsView = localStorage.getItem("vault_admin_libs_view") === "grid" ? "grid" : "list"; } catch (e) { /* storage may be unavailable */ }
+  const libsViewToggle = $("#libsViewToggle");
+  function syncLibsViewToggle() {
+    if (!libsViewToggle) return;
+    const grid = libsView === "grid";
+    libsViewToggle.setAttribute("aria-pressed", String(grid));
+    libsViewToggle.setAttribute("aria-label", grid ? "التبديل إلى عرض القائمة" : "التبديل إلى عرض البطاقات");
+    libsViewToggle.title = grid ? "عرض القائمة" : "عرض البطاقات";
+    libsViewToggle.querySelector(".adm-view-icon").textContent = grid ? "☷" : "▦";
+    libsViewToggle.querySelector(".adm-view-label").textContent = grid ? "عرض القائمة" : "عرض شبكي";
+    $("#libsList").classList.toggle("is-grid", grid);
+  }
+  libsViewToggle.addEventListener("click", () => {
+    libsView = libsView === "list" ? "grid" : "list";
+    try { localStorage.setItem("vault_admin_libs_view", libsView); } catch (e) { /* storage may be unavailable */ }
+    syncLibsViewToggle();
+  });
+  syncLibsViewToggle();
 
   /* ---------- Auth ---------- */
   auth.onAuthStateChanged((u) => {
@@ -67,6 +86,7 @@
     $("#statLibs").textContent = fmt(libs.length);
     $("#statItems").textContent = fmt(items.length);
     $("#statDownloads").textContent = fmt([...libs, ...items].reduce((sum, x) => sum + (Number(x.downloads) || 0), 0));
+    $("#libsList").classList.toggle("is-grid", libsView === "grid");
     $("#libsList").innerHTML = libs.length ? libs.map((l) => `
       <div class="row">${pic(l.icon)}
         <div><h4>${esc(l.title)}</h4>
