@@ -189,22 +189,23 @@
     if (a && D) D.track(a.dataset.track, a.dataset.id);
   });
 
-  /* ---------- تحميل مباشر: بيبدأ من غير ما يفتح صفحة جوجل درايف، وبيدعم أكتر من ملف ---------- */
+  /* ---------- تحميل ملفات Google Drive ---------- */
   let dlToast = null, dlTimer = null;
-  function showDlToast(count, orig) {
+  function showDlToast(message, fallbackUrl) {
     if (!dlToast) {
       dlToast = document.createElement("div");
       dlToast.className = "dl-toast";
       dlToast.setAttribute("role", "status");
       document.body.appendChild(dlToast);
     }
-    dlToast.textContent = count > 1
-      ? `بدأ تحميل ${count} ملفات... لو المتصفح سألك، اسمح بالتحميلات المتعددة.`
-      : "بدأ التحميل... لو ما بدأش خلال ثواني ";
-    if (count === 1) {
+    dlToast.replaceChildren(document.createTextNode(message));
+    if (fallbackUrl) {
       const a = document.createElement("a");
-      a.href = orig; a.target = "_blank"; a.rel = "noopener"; a.textContent = "افتح صفحة التحميل";
-      dlToast.appendChild(a);
+      a.href = fallbackUrl;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = "افتح صفحة التحميل";
+      dlToast.append(" ", a);
     }
     requestAnimationFrame(() => dlToast.classList.add("show"));
     clearTimeout(dlTimer);
@@ -212,16 +213,23 @@
   }
   document.addEventListener("click", (e) => {
     const a = e.target.closest("[data-urls]");
-    if (!a || e.button || e.ctrlKey || e.metaKey || e.shiftKey) return; // ctrl/كليك وسط: السلوك العادي
-    e.preventDefault();
+    if (!a || e.button || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
     const urls = a.dataset.urls.split(" ").filter(Boolean);
-    urls.forEach((u, i) => setTimeout(() => {
-      const f = document.createElement("iframe");
-      f.style.display = "none"; f.src = u;
-      document.body.appendChild(f);
-      setTimeout(() => f.remove(), 600000);
-    }, i * 1500));
-    showDlToast(urls.length, a.dataset.orig);
+    if (!urls.length) return;
+    e.preventDefault();
+
+    if (urls.length === 1) {
+      // ابدأ التنزيل من نفس نقرة المستخدم؛ iframe المخفي كان يُحجب في بعض المتصفحات.
+      showDlToast("جاري فتح رابط التحميل...", a.dataset.orig);
+      window.location.assign(urls[0]);
+      return;
+    }
+
+    // الملفات المتعددة: افتح كل رابط مباشرةً بعد نقرة المستخدم مع فاصل قصير.
+    showDlToast("جاري فتح روابط التحميل. لو المتصفح منعها، استخدم الروابط واحدًا تلو الآخر.");
+    urls.forEach((url, i) => {
+      setTimeout(() => window.open(url, "_blank", "noopener"), i * 700);
+    });
   });
 
   /* ---------- Reveal on scroll ---------- */
