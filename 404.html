@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <script>
+  /* ==========================================================
+     404.html — GitHub Pages بيعرضه تلقائياً لأي لينك مش موجود.
+     1) بيظبط المسار الأساسي للموقع عشان الصور والـ CSS تشتغل من أي عمق.
+     2) بيصلّح لينكات الصفحات المعروفة لو اتكتبت بشكل مختلف
+        (مثلاً /contact/ ← /contact)، وبعدين يعرض صفحة الخطأ لو مفيش حل.
+     ========================================================== */
+  (function () {
+    var BASE = "/creative-vault/";          // اسم الـ Repository على GitHub Pages
+    var p = location.pathname;
+    if (p.indexOf(BASE) !== 0) BASE = "/";  // دومين خاص أو موقع على الجذر
+    document.write('<base href="' + BASE + '">');
+
+    var rest = p.slice(BASE.length).replace(/\/+$/, "").replace(/\.html$/i, "").toLowerCase();
+    var known = { library: 1, about: 1, contact: 1, admin: 1 };
+    var tail = location.search + location.hash;
+    var tries = 0;
+    try { tries = +sessionStorage.getItem("v404") || 0; } catch (e) { /* تجاهل */ }
+
+    var target = null;
+    if (rest === "" || rest === "index") target = BASE;
+    else if (known[rest]) target = BASE + rest;
+    if (!target || tries >= 2) return;
+
+    var go = null;
+    if (target !== p) go = target;                                        // /contact/ ← /contact
+    else if (known[rest]) go = BASE + rest + ".html";                     // السيرفر مش بيدعم اللينكات من غير .html
+    if (go) {
+      try { sessionStorage.setItem("v404", String(tries + 1)); } catch (e) { /* تجاهل */ }
+      location.replace(go + tail);
+    }
+  })();
+  </script>
+  <title>الصفحة مش موجودة | Creative Vault</title>
+  <meta name="theme-color" content="#14062e">
+  <link rel="icon" href="assets/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .nf{min-height:100vh;display:grid;place-content:center;justify-items:center;gap:14px;text-align:center;padding:32px 16px}
+    .nf .brand{margin-bottom:6px}
+    .nf-code{
+      font-family:'Inter',var(--font);font-size:clamp(5rem,22vw,10rem);font-weight:900;line-height:1;
+      background:linear-gradient(135deg,var(--purple-2),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent;
+      filter:drop-shadow(0 0 28px rgba(139,61,255,.55));
+    }
+    .nf h1{font-size:clamp(1.3rem,4vw,2rem);font-weight:900}
+    .nf p{color:var(--muted);max-width:480px}
+    .nf-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+    .btn-ghost{border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.05)}
+    .btn-ghost:hover{border-color:var(--green);color:var(--green)}
+  </style>
+</head>
+<body>
+  <main class="nf">
+    <a href="./" class="brand" aria-label="Creative Vault">
+      <img src="assets/logo.png" alt="" class="brand-logo" onerror="this.style.display='none'">
+      <span class="brand-text"><span>Creative</span><span class="g">Vault</span></span>
+    </a>
+    <div class="nf-code" aria-hidden="true">404</div>
+    <h1>الصفحة اللي بتدور عليها مش موجودة</h1>
+    <p>ممكن اللينك اتغيّر أو فيه حرف زيادة فيه. ارجع للرئيسية أو تصفّح المكتبة.</p>
+    <div class="nf-actions">
+      <a class="btn btn-green" href="./">الرئيسية</a>
+      <a class="btn btn-ghost" href="library">المكتبة</a>
+    </div>
+  </main>
+</body>
+</html>
