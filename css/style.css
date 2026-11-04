@@ -255,3 +255,11 @@ button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
   .feat{border:0!important}
   .line-title span{white-space:normal;text-align:center}
 }
+
+
+/* ---------- Library details buttons ---------- */
+.btn-outline{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:10px 20px;border-radius:999px;border:1px solid var(--purple-2);color:var(--text);background:rgba(139,61,255,.08);font-weight:800;font-size:.9rem;transition:.25s}
+.btn-outline:hover{border-color:var(--green);color:var(--green);background:rgba(34,242,122,.06);transform:translateY(-2px)}
+.lib-card .details-btn{width:100%;margin-top:10px}
+.l-body .item-download,.l-body .details-btn{width:100%;margin-top:10px;padding:9px 12px;font-size:.82rem}
+.l-body .details-btn{margin-top:7px}
