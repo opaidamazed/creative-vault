@@ -64,6 +64,9 @@
   const pic = (src, ph) => `<div class="pic">${src ? `<img src="${esc(safeImg(src))}" alt="" onerror="this.remove()">` : (ph || "")}</div>`;
 
   function render() {
+    $("#statLibs").textContent = fmt(libs.length);
+    $("#statItems").textContent = fmt(items.length);
+    $("#statDownloads").textContent = fmt([...libs, ...items].reduce((sum, x) => sum + (Number(x.downloads) || 0), 0));
     $("#libsList").innerHTML = libs.length ? libs.map((l) => `
       <div class="row">${pic(l.icon)}
         <div><h4>${esc(l.title)}</h4>
