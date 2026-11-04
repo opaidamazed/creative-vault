@@ -252,6 +252,47 @@ https://opaidamazed.github.io/creative-vault/
 
 ------------------------------------------------------------------------
 
+## 7. Graphic Design Glossary
+
+**Release title**
+
+``` text
+Graphic Design Glossary
+```
+
+**Suggested tag**
+
+``` text
+graphic-design-glossary-v1
+```
+
+**Release notes**
+
+``` markdown
+A practical guide to 40 essential graphic design terms, covering the workflow from communicating with a client to delivering the final work.
+
+### What's included
+- 40 essential graphic design terms
+- 1 glossary file
+- File size: 27 KB
+
+### Download
+Download the graphic design glossary file from the **Assets** section below.
+
+## قاموس مصطلحات الجرافيك
+
+أهم 40 مصطلح لازم تعرفهم في عالم الجرافيك ديزاين، من أول ما تتعامل مع عميل لحد ما تسلّمه الشغل النهائي.
+
+**Part of [Creative Vault](https://github.com/opaidamazed/creative-vault)** — Your Creative Resources Hub.
+
+If this release is useful, consider starring the repository on GitHub.
+
+Website:
+https://opaidamazed.github.io/creative-vault/
+```
+
+------------------------------------------------------------------------
+
 ## Publishing checklist
 
 - Create a separate GitHub Release for each library or resource pack.
