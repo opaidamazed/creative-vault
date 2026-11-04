@@ -168,3 +168,29 @@ dialog[open]{animation:adm-dialog-in .25s ease-out}
 @media(max-width:900px){.adm-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.adm-orbit{left:2%;scale:.85}}
 @media(max-width:640px){.adm-welcome{padding:24px 20px;min-height:220px}.adm-orbit{opacity:.22;left:-34px;scale:.9}.adm-welcome-copy{max-width:100%}.adm-welcome p{max-width:270px}.adm-stats{gap:8px}.adm-stat{padding:12px;gap:9px;min-height:90px}.adm-stat-icon{width:38px;height:38px;border-radius:12px}.adm-stat strong{font-size:1.25rem}.tabs{width:100%;overflow-x:auto;flex-wrap:nowrap}.tab{flex:1;padding-inline:12px;font-size:.82rem;white-space:nowrap}.panel{padding:16px 12px}.panel-head{align-items:flex-start;flex-direction:column}.adm-orbit{display:none}}
 @media(prefers-reduced-motion:reduce){.adm-welcome,.adm-stat,.adm-orbit-core,.adm-orbit-ring,.adm-orbit-icon,.adm-live-dot,.adm-status-pulse{animation:none!important}.row,.adm-stat,.btn-g,.btn-s{transition:none!important}}
+
+
+/* ---------- Library list / square-card view switch ---------- */
+.adm-library-tools{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.adm-view-toggle{min-height:40px;gap:8px}
+.adm-view-icon{font-size:1.2rem;line-height:1;color:var(--green)}
+.adm-view-label{font-size:.8rem}
+#libsList.is-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));align-items:stretch}
+#libsList.is-grid .row{aspect-ratio:1/1;min-height:230px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:12px;padding:20px 16px;text-align:center}
+#libsList.is-grid .row .pic{width:88px;height:88px;flex:none;border-radius:18px}
+#libsList.is-grid .row>div:nth-child(2){width:100%;min-width:0}
+#libsList.is-grid .row h4{font-size:.98rem;overflow-wrap:anywhere}
+#libsList.is-grid .row .tags{justify-content:center}
+#libsList.is-grid .row .acts{width:100%;justify-content:center;gap:6px}
+#libsList.is-grid .row .acts .btn-s{padding:7px 9px;font-size:.76rem}
+#libsList.is-grid .empty-row{grid-column:1/-1;aspect-ratio:auto}
+@media(max-width:640px){
+  .adm-library-tools{width:100%;justify-content:space-between}
+  #libsList.is-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  #libsList.is-grid .row{min-height:0;aspect-ratio:1/1;padding:12px 8px;gap:8px}
+  #libsList.is-grid .row .pic{width:64px;height:64px;border-radius:14px}
+  #libsList.is-grid .row h4{font-size:.82rem}
+  #libsList.is-grid .row small{font-size:.7rem}
+  #libsList.is-grid .row .acts{gap:4px}
+  #libsList.is-grid .row .acts .btn-s{font-size:.68rem;padding:6px}
+}
