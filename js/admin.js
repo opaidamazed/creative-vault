@@ -164,11 +164,12 @@
 
     val("title", doc && doc.title); val("url", doc && doc.url); val("size", doc && doc.size);
     if (kind === "lib") {
-      val("desc", doc ? doc.desc : ""); val("contents", Array.isArray(doc && doc.contents) ? doc.contents.join("\\n") : (doc && doc.contents || "")); val("count", doc && doc.count);
+      val("desc", doc ? doc.desc : ""); val("contents", Array.isArray(doc && doc.contents) ? doc.contents.join("\n") : (doc && doc.contents || "")); val("count", doc && doc.count);
       val("countLabel", doc ? doc.countLabel : "ملف"); val("buttonText", doc ? doc.buttonText : "");
       val("order", doc ? doc.order : libs.length); val("badge", doc && doc.badge);
       f.featured.checked = !!(doc && doc.featured);
     } else {
+      val("desc", doc && doc.desc); val("contents", Array.isArray(doc && doc.contents) ? doc.contents.join("\n") : (doc && doc.contents || ""));
       val("category", doc ? doc.category : "sfx");
       f.isNew.checked = doc ? !!doc.isNew : true;
     }
@@ -220,7 +221,7 @@
       if (editing.kind === "lib") {
         const id = editing.id || ("lib_" + Date.now().toString(36));
         const data = {
-          title: f.title.value.trim(), desc: f.desc.value.trim(), contents: f.contents.value.split(/\\r?\\n/).map((s) => s.trim()).filter(Boolean), url: f.url.value.trim(), size: f.size.value.trim(),
+          title: f.title.value.trim(), desc: f.desc.value.trim(), contents: f.contents.value.split(/\r?\n/).map((s) => s.trim()).filter(Boolean), url: f.url.value.trim(), size: f.size.value.trim(),
           count: f.count.value.trim(), countLabel: f.countLabel.value.trim(), buttonText: f.buttonText.value.trim(),
           order: parseInt(f.order.value, 10) || 0, featured: f.featured.checked, badge: f.badge.value.trim(), icon: img
         };
@@ -229,7 +230,7 @@
       } else {
         const id = editing.id || ("it_" + Date.now().toString(36));
         const data = {
-          title: f.title.value.trim(), url: f.url.value.trim(), size: f.size.value.trim(),
+          title: f.title.value.trim(), desc: f.desc.value.trim(), contents: f.contents.value.split(/\r?\n/).map((s) => s.trim()).filter(Boolean), url: f.url.value.trim(), size: f.size.value.trim(),
           category: f.category.value, isNew: f.isNew.checked, thumb: img
         };
         if (!editing.id) { data.downloads = 0; data.createdAt = firebase.firestore.FieldValue.serverTimestamp(); }
