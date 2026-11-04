@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>تواصل معنا | Creative Vault</title>
+  <meta name="description" content="ابعت رسالة لعبيدة صاحب Creative Vault: اقتراح، مشكلة في التحميل، طلب ملحق، أو تعاون.">
+  <meta name="theme-color" content="#14062e">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body data-page="contact">
+
+<div id="siteHeader"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <div class="eyebrow"><span>تواصل معنا</span></div>
+      <h1>خلّينا نتكلم</h1>
+      <p>عندك اقتراح، مشكلة في تحميل ملف، أو طلب ملحق معيّن؟ ابعتلي رسالة وهرد عليك.</p>
+    </div>
+  </section>
+
+  <div class="container contact-wrap">
+    <div class="contact-grid">
+
+      <!-- ============ عني وعن الموقع ============ -->
+      <aside class="c-side">
+        <div class="panel-card me-card">
+          <div class="avatar" aria-hidden="true">ع</div>
+          <h2>عبيدة</h2>
+          <p class="role">مصمم جرافيك ومطوّر ويب · Creatix Studio</p>
+          <p class="bio">أنا عبيدة، مصمم جرافيك ومطوّر ويب، بشتغل على تصميم المواقع والهويات وصناعة المحتوى العربي. عملت Creative Vault عشان أحط ملحقات التصميم والمونتاج اللي بشاركها مع المتابعين في مكان ثابت، بدل اللينكات المتفرقة.</p>
+
+          <ul class="c-list">
+            <li><a href="mailto:obaidamazed@gmail.com" data-mailto>
+              <svg class="i"><use href="#i-mail"/></svg><bdi dir="ltr" data-email>obaidamazed@gmail.com</bdi></a></li>
+          </ul>
+
+          <a id="extraContact" class="btn btn-green extra-contact" href="#" target="_blank" rel="noopener" hidden>تواصل مباشر</a>
+
+          <div class="soc-box" id="socBox">
+            <small>تابعني على</small>
+            <div class="soc">
+              <a href="#" data-social="youtube" aria-label="يوتيوب"><svg class="i"><use href="#i-youtube"/></svg></a>
+              <a href="#" data-social="facebook" aria-label="فيسبوك"><svg class="i"><use href="#i-facebook"/></svg></a>
+              <a href="#" data-social="instagram" aria-label="انستجرام"><svg class="i"><use href="#i-instagram"/></svg></a>
+              <a href="#" data-social="telegram" aria-label="تليجرام"><svg class="i"><use href="#i-telegram"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-card site-card">
+          <h3>عن <span class="g en">Creative Vault</span></h3>
+          <p>منصة متخصصة في تقديم أفضل الملحقات والموارد الإبداعية للمصممين وصناع المحتوى. أي ملحقات جديدة بتنزل هنا في مكان ثابت، ومش هتحتاج لينكات جديدة كل مرة.</p>
+          <ul class="ticks">
+            <li><svg class="i"><use href="#i-check"/></svg>مؤثرات صوتية وموسيقى ومكتبة كاملة</li>
+            <li><svg class="i"><use href="#i-check"/></svg>تحميل مباشر بضغطة واحدة</li>
+            <li><svg class="i"><use href="#i-check"/></svg>إضافات جديدة باستمرار</li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- ============ الفورم ============ -->
+      <section class="panel-card c-form-card" aria-labelledby="formTitle">
+        <h2 id="formTitle">ابعتلي رسالة</h2>
+        <p class="form-sub">الرسالة بتوصلني على الإيميل مباشرة، وهرد عليك على الإيميل اللي تكتبه.</p>
+
+        <form id="contactForm" class="cf" novalidate>
+          <div class="row2">
+            <label for="cName">الاسم
+              <input id="cName" name="name" type="text" maxlength="80" autocomplete="name" placeholder="اسمك" required>
+            </label>
+            <label for="cEmail">الإيميل
+              <input id="cEmail" name="email" type="email" maxlength="120" autocomplete="email" dir="ltr" placeholder="you@example.com" required>
+            </label>
+          </div>
+
+          <label for="cSubject">الموضوع
+            <select id="cSubject" name="subject">
+              <option>اقتراح أو فكرة</option>
+              <option>مشكلة في التحميل</option>
+              <option>طلب ملحق جديد</option>
+              <option>تعاون / شغل</option>
+              <option>أخرى</option>
+            </select>
+          </label>
+
+          <label for="cMessage">الرسالة
+            <textarea id="cMessage" name="message" rows="6" maxlength="2000" placeholder="اكتب رسالتك هنا..." required></textarea>
+          </label>
+
+          <!-- حقل فخ للبوتات: لازم يفضل فاضي -->
+          <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <p class="form-msg" id="formMsg" role="alert" hidden></p>
+          <button class="btn btn-green send" id="sendBtn" type="submit">إرسال الرسالة</button>
+        </form>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<div id="siteFooter"></div>
+
+<script src="js/config.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/contact.js"></script>
+</body>
+</html>
