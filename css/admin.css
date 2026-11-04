@@ -97,3 +97,5 @@ dialog[data-kind="lib"] [data-for="item"],dialog[data-kind="item"] [data-for="li
   .acts{grid-column:1/-1;justify-content:flex-start}
   .adm-head-in .who{display:none}
 }
+
+.form-grid label small{font-size:.75rem;font-weight:600;color:var(--muted)}
