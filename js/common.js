@@ -44,7 +44,7 @@
   const CATS = { sfx: "مؤثرات صوتية", music: "موسيقى", video: "فيديو وخامات", design: "تصميم", other: "أخرى" };
   const page = document.body.dataset.page || "";
 
-  const V = { $, $$, esc, icon, isReal, safeUrl, safeImg, fmt, norm, CATS, onSearch: null, social: {}, contactUrl: "#" };
+  const V = { $, $, esc, icon, isReal, safeUrl, safeImg, fmt, norm, CATS, downloadAttrs: dlAttrs, onSearch: null, social: {}, contactUrl: "#" };
   window.Vault = V;
 
   /* ---------- SVG sprite ---------- */
@@ -140,6 +140,7 @@
   }
 
   /* ---------- Cards ---------- */
+  const detailsUrl = (type, id) => `details.html?type=${encodeURIComponent(type)}&id=${encodeURIComponent(id)}`;
   V.libCard = (l) => {
     const dl = +l.downloads || 0;
     const link = dlAttrs(l.url);
@@ -157,6 +158,7 @@
       <a class="btn btn-green dl" href="${esc(link.href)}" ${link.attrs} data-track="libraries" data-id="${esc(l.id)}">
         ${icon("down")}${esc(l.buttonText || "تحميل")}
       </a>
+      <a class="btn btn-outline details-btn" href="${detailsUrl("library", l.id)}">${icon("info")}معلومات عن المكتبة</a>
     </article>`;
   };
 
@@ -166,7 +168,7 @@
     const isNew = x.isNew || (x.createdAt && Date.now() - x.createdAt < 6048e5);
     const cat = CATS[x.category];
     return `
-    <a class="l-card reveal" href="${esc(link.href)}" ${link.attrs} data-track="latest" data-id="${esc(x.id)}" data-search="${esc((x.title || "") + " " + (cat || ""))}">
+    <article class="l-card reveal" data-search="${esc((x.title || "") + " " + (cat || ""))}">
       <div class="l-thumb">
         ${x.thumb ? `<img src="${esc(safeImg(x.thumb))}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="thumb-ph">${icon("headphones")}</span>`}
         ${isNew ? '<span class="new-tag">NEW</span>' : ""}
@@ -175,8 +177,10 @@
       <div class="l-body">
         <h4>${esc(x.title)}</h4>
         <div class="sz"><span class="dc">${dl > 0 ? icon("down") + " " + fmt(dl) : ""}</span><span class="sw">${icon("file")} <bdi dir="ltr">${esc(x.size || "")}</bdi></span></div>
+        <a class="btn btn-green item-download" href="${esc(link.href)}" ${link.attrs} data-track="latest" data-id="${esc(x.id)}">${icon("down")}تحميل</a>
+        <a class="btn btn-outline details-btn" href="${detailsUrl("item", x.id)}">${icon("info")}معلومات عن الملحق</a>
       </div>
-    </a>`;
+    </article>`;
   };
 
   /* عدّاد التحميل */
