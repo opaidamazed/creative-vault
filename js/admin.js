@@ -70,7 +70,7 @@
           <small>${esc(l.count)} ${esc(l.countLabel)} · ${esc(l.size)}</small>
           <div class="tags">${l.featured ? '<span class="tag g">مميز</span>' : ""}<span class="tag">ترتيب ${+l.order || 0}</span><span class="tag">⬇ ${fmt(l.downloads)}</span></div></div>
         <div class="acts">
-          <button class="btn-s" data-edit="lib" data-id="${esc(l.id)}" type="button">تعديل</button>
+          <a class="btn-s" href="details.html?type=library&id=${encodeURIComponent(l.id)}" target="_blank" rel="noopener">معاينة</a><button class="btn-s" data-edit="lib" data-id="${esc(l.id)}" type="button">تعديل</button>
           <button class="btn-s" data-reset="libraries" data-id="${esc(l.id)}" type="button">تصفير العدّاد</button>
           <button class="btn-s danger" data-del="libraries" data-id="${esc(l.id)}" type="button">حذف</button>
         </div></div>`).join("") : '<div class="empty-row">مفيش مكتبات متخزنة.</div>';
@@ -82,7 +82,7 @@
           <small>${esc(x.size || "")} ${x.category && CATS[x.category] ? "· " + esc(CATS[x.category]) : ""}</small>
           <div class="tags">${x.isNew ? '<span class="tag g">NEW</span>' : ""}<span class="tag">⬇ ${fmt(x.downloads)}</span></div></div>
         <div class="acts">
-          <button class="btn-s" data-edit="item" data-id="${esc(x.id)}" type="button">تعديل</button>
+          <a class="btn-s" href="details.html?type=item&id=${encodeURIComponent(x.id)}" target="_blank" rel="noopener">معاينة</a><button class="btn-s" data-edit="item" data-id="${esc(x.id)}" type="button">تعديل</button>
           <button class="btn-s" data-reset="latest" data-id="${esc(x.id)}" type="button">تصفير العدّاد</button>
           <button class="btn-s danger" data-del="latest" data-id="${esc(x.id)}" type="button">حذف</button>
         </div></div>`).join("") : '<div class="empty-row">لسه مفيش إضافات. اضغط "+ إضافة ملحق" عشان تنزّل أول ملحق، وهيظهر في الموقع فوراً.</div>';
@@ -164,7 +164,7 @@
 
     val("title", doc && doc.title); val("url", doc && doc.url); val("size", doc && doc.size);
     if (kind === "lib") {
-      val("desc", doc ? doc.desc : ""); val("count", doc && doc.count);
+      val("desc", doc ? doc.desc : ""); val("contents", Array.isArray(doc && doc.contents) ? doc.contents.join("\\n") : (doc && doc.contents || "")); val("count", doc && doc.count);
       val("countLabel", doc ? doc.countLabel : "ملف"); val("buttonText", doc ? doc.buttonText : "");
       val("order", doc ? doc.order : libs.length); val("badge", doc && doc.badge);
       f.featured.checked = !!(doc && doc.featured);
@@ -220,7 +220,7 @@
       if (editing.kind === "lib") {
         const id = editing.id || ("lib_" + Date.now().toString(36));
         const data = {
-          title: f.title.value.trim(), desc: f.desc.value.trim(), url: f.url.value.trim(), size: f.size.value.trim(),
+          title: f.title.value.trim(), desc: f.desc.value.trim(), contents: f.contents.value.split(/\\r?\\n/).map((s) => s.trim()).filter(Boolean), url: f.url.value.trim(), size: f.size.value.trim(),
           count: f.count.value.trim(), countLabel: f.countLabel.value.trim(), buttonText: f.buttonText.value.trim(),
           order: parseInt(f.order.value, 10) || 0, featured: f.featured.checked, badge: f.badge.value.trim(), icon: img
         };
