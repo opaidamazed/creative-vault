@@ -46,6 +46,30 @@
   </header>
 
   <main class="container adm-main">
+    <section class="adm-welcome">
+      <div class="adm-welcome-copy">
+        <span class="adm-kicker"><i class="adm-live-dot"></i> CREATIVE VAULT CONTROL CENTER</span>
+        <h1>أهلاً بيك في <span>لوحة التحكم</span></h1>
+        <p>إدارة مكتباتك وإضافاتك وإعدادات الموقع من مكان واحد.</p>
+        <div class="adm-welcome-actions">
+          <button class="btn-g" data-add="lib" type="button"><span class="adm-btn-icon">＋</span> إضافة مكتبة</button>
+          <button class="btn-s" data-add="item" type="button"><span class="adm-btn-icon">✦</span> إضافة ملحق جديد</button>
+        </div>
+      </div>
+      <div class="adm-orbit" aria-hidden="true">
+        <div class="adm-orbit-ring adm-ring-one"></div><div class="adm-orbit-ring adm-ring-two"></div>
+        <div class="adm-orbit-core">✦</div><span class="adm-orbit-icon adm-orbit-a">♫</span><span class="adm-orbit-icon adm-orbit-b">◈</span><span class="adm-orbit-icon adm-orbit-c">✧</span>
+      </div>
+      <div class="adm-welcome-glow"></div>
+    </section>
+
+    <section class="adm-stats" aria-label="ملخص الموقع">
+      <article class="adm-stat"><span class="adm-stat-icon purple">▤</span><div><small>المكتبات الأساسية</small><strong id="statLibs">—</strong><em>مكتبات منشورة</em></div><span class="adm-stat-spark">↗</span></article>
+      <article class="adm-stat"><span class="adm-stat-icon green">✦</span><div><small>الإضافات الجديدة</small><strong id="statItems">—</strong><em>إضافات بالموقع</em></div><span class="adm-stat-spark">↗</span></article>
+      <article class="adm-stat"><span class="adm-stat-icon violet">⇩</span><div><small>إجمالي التحميلات</small><strong id="statDownloads">—</strong><em>لكل الموارد</em></div><span class="adm-stat-spark">↗</span></article>
+      <article class="adm-stat adm-stat-status"><span class="adm-stat-icon green">●</span><div><small>حالة لوحة التحكم</small><strong>متصل</strong><em>Firebase ready</em></div><span class="adm-status-pulse"></span></article>
+    </section>
+
     <nav class="tabs" role="tablist">
       <button class="tab on" data-tab="libs" role="tab">المكتبات</button>
       <button class="tab" data-tab="items" role="tab">الإضافات الجديدة</button>
