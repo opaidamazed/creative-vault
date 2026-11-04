@@ -44,7 +44,7 @@
   const CATS = { sfx: "مؤثرات صوتية", music: "موسيقى", video: "فيديو وخامات", design: "تصميم", other: "أخرى" };
   const page = document.body.dataset.page || "";
 
-  const V = { $, $, esc, icon, isReal, safeUrl, safeImg, fmt, norm, CATS, downloadAttrs: dlAttrs, onSearch: null, social: {}, contactUrl: "#" };
+  const V = { $, $$, esc, icon, isReal, safeUrl, safeImg, fmt, norm, CATS, downloadAttrs: dlAttrs, onSearch: null, social: {}, contactUrl: "#" };
   window.Vault = V;
 
   /* ---------- SVG sprite ---------- */
