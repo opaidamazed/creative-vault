@@ -35,7 +35,7 @@
 
 The project focuses on a clean browsing experience, clear resource information, and simple content management without requiring a complex backend or build pipeline.
 
-**Creative Vault مش مجرد روابط تحميل؛ هو مكان منظم للمصادر الإبداعية، هدفه يسهّل على المصممين وصناع المحتوى الوصول للأدوات والملفات اللي يحتاجوها.**
+**Creative Vault مش مجرد أزرار تحميل؛ هو مكان منظم للمصادر الإبداعية، هدفه يسهّل على المصممين والمبدعين الوصول للأدوات والملفات اللي يحتاجوها.**
 
 ## 🚀 Features
 
@@ -48,7 +48,7 @@ The project focuses on a clean browsing experience, clear resource information, 
 - **Responsive interface** — designed for desktop and mobile screens, with an RTL Arabic interface and a purple/green visual identity.
 - **Simple deployment** — static HTML, CSS, and JavaScript; no build step required.
 
-**الموقع بيدعم العربية، وواجهة الاستخدام مصممة باتجاه RTL، مع تجربة بسيطة على الموبايل والكمبيوتر.**
+**الموقع بيدعم اللغة العربية، وواجهة الاستخدام مصممة باتجاه RTL، مع تجربة بسيطة واحترافية على الموبايل والكمبيوتر.**
 
 ## 🧰 Built With
 
