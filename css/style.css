@@ -284,3 +284,30 @@ textarea,
 [contenteditable="true"]{
   cursor:text;
 }
+
+
+/* ---------- Creative Vault themed page scrollbar ---------- */
+html{
+  scrollbar-width:thin;
+  scrollbar-color:var(--purple) var(--bg-2);
+}
+html::-webkit-scrollbar{
+  width:12px;
+}
+html::-webkit-scrollbar-track{
+  background:linear-gradient(180deg,#160836 0%,#0f0524 55%,#1a0b3d 100%);
+  border-inline-start:1px solid rgba(160,110,255,.16);
+}
+html::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--purple-2) 0%,var(--purple) 58%,var(--green-2) 100%);
+  border:3px solid var(--bg-2);
+  border-radius:999px;
+  min-height:42px;
+}
+html::-webkit-scrollbar-thumb:hover{
+  background:linear-gradient(180deg,#c18aff 0%,var(--purple) 48%,var(--green) 100%);
+  box-shadow:0 0 10px rgba(139,61,255,.45);
+}
+html::-webkit-scrollbar-corner{
+  background:var(--bg);
+}
