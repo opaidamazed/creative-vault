@@ -263,3 +263,24 @@ button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 .lib-card .details-btn{width:100%;margin-top:10px}
 .l-body .item-download,.l-body .details-btn{width:100%;margin-top:10px;padding:9px 12px;font-size:.82rem}
 .l-body .details-btn{margin-top:7px}
+
+
+/* ---------- Custom Creative Vault cursors ---------- */
+/* PNG cursors uploaded in /assets; fallback remains native if unsupported. */
+body{
+  cursor:url("../assets/cursur.png"), auto;
+}
+a,
+button,
+[role="button"],
+summary,
+select,
+label[for]{
+  cursor:url("../assets/pointer.png"), pointer;
+}
+/* Keep text selection and editing behavior natural inside form fields. */
+input,
+textarea,
+[contenteditable="true"]{
+  cursor:text;
+}
