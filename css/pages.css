@@ -104,3 +104,69 @@
   .items-grid{grid-template-columns:repeat(2,1fr);gap:12px}
   .meta span{padding:0 9px;font-size:.8rem}
 }
+
+/* ---------- تحميل مباشر: إشعار ---------- */
+.dl-toast{
+  position:fixed;bottom:22px;left:50%;translate:-50% 20px;opacity:0;pointer-events:none;z-index:80;
+  max-width:min(520px,calc(100% - 28px));background:var(--card-2);border:1px solid var(--green);border-radius:14px;
+  padding:12px 18px;font-weight:700;font-size:.9rem;text-align:center;box-shadow:0 14px 40px rgba(0,0,0,.5);transition:.3s;
+}
+.dl-toast.show{opacity:1;translate:-50% 0;pointer-events:auto}
+.dl-toast a{color:var(--green);text-decoration:underline;margin-inline-start:4px}
+.btn:disabled{opacity:.6;cursor:wait;transform:none}
+
+/* ---------- صفحة تواصل معنا ---------- */
+.contact-wrap{padding-block:40px 10px}
+.contact-grid{display:grid;grid-template-columns:5fr 7fr;gap:24px;align-items:start}
+.c-side{display:grid;gap:24px}
+.panel-card{
+  background:linear-gradient(180deg,var(--card-2),var(--card));border:1px solid var(--line);
+  border-radius:var(--radius);padding:26px;
+}
+.me-card{text-align:center}
+.avatar{
+  width:84px;height:84px;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;
+  font-size:2.1rem;font-weight:900;background:linear-gradient(135deg,var(--purple),#3b138f);
+  box-shadow:0 0 0 3px rgba(34,242,122,.6),0 0 30px rgba(139,61,255,.5);
+}
+.me-card h2{font-size:1.4rem;font-weight:900}
+.role{color:var(--green);font-weight:700;font-size:.9rem;margin-bottom:12px}
+.bio{color:var(--muted);font-size:.94rem;text-align:start}
+.c-list{list-style:none;margin:18px 0 12px}
+.c-list a{
+  display:flex;align-items:center;justify-content:center;gap:10px;padding:11px 14px;border:1px solid var(--line);
+  border-radius:12px;font-weight:700;font-size:.92rem;transition:.2s;word-break:break-all;
+}
+.c-list a:hover{border-color:var(--green);color:var(--green)}
+.extra-contact{width:100%;margin-bottom:12px}
+.soc-box{margin-top:14px;display:grid;gap:10px;justify-items:center}
+.soc-box small{color:var(--muted);font-weight:600}
+.site-card h3{font-size:1.1rem;font-weight:900;margin-bottom:6px}
+.site-card p{color:var(--muted);font-size:.92rem;margin-bottom:12px}
+.ticks{list-style:none;display:grid;gap:8px}
+.ticks li{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.9rem}
+.ticks .i{color:var(--green);width:1.2em;height:1.2em}
+
+.c-form-card h2{font-size:1.4rem;font-weight:900;margin-bottom:4px}
+.form-sub{color:var(--muted);font-size:.9rem;margin-bottom:18px}
+.cf{display:grid;gap:14px}
+.cf .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cf label{display:grid;gap:6px;font-weight:700;font-size:.88rem;color:var(--muted)}
+.cf input:not(.hp),.cf select,.cf textarea{
+  width:100%;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:12px;
+  padding:12px 14px;color:var(--text);font:inherit;font-size:.95rem;outline:0;transition:.2s;
+}
+.cf input::placeholder,.cf textarea::placeholder{color:rgba(185,168,224,.6)}
+.cf input:focus,.cf select:focus,.cf textarea:focus{border-color:var(--purple-2);box-shadow:0 0 0 3px rgba(139,61,255,.22)}
+.cf select option{background:var(--card)}
+.cf textarea{resize:vertical;min-height:140px}
+.hp{position:absolute;width:0;height:0;padding:0;border:0;opacity:0;overflow:hidden;pointer-events:none}
+.form-msg{padding:12px 16px;border-radius:12px;font-weight:700;font-size:.92rem}
+.form-msg.ok{border:1px solid var(--green);background:rgba(34,242,122,.1)}
+.form-msg.err{border:1px solid #ff6b6b;background:rgba(255,107,107,.1)}
+.send{width:100%;font-size:1.02rem;border:0}
+
+@media (max-width:860px){
+  .contact-grid{grid-template-columns:1fr}
+  .cf .row2{grid-template-columns:1fr}
+}
