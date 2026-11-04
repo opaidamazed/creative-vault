@@ -44,7 +44,7 @@ window.VAULT_CONFIG = {
       countLabel: "ملف",
       size: "111 MB",
       buttonText: "تحميل مكتبة المؤثرات الصوتية",
-      url: "https://drive.google.com/file/d/1Fepe34wAjnjGvxvr5LapwSJ3o4rWC-XW/view?usp=sharing",
+      url: "https://drive.google.com/file/d/1Fepe34wAjnjGvxvr5LapwSJ3o4rWC-XW/view?usp=drive_link",
       featured: true,
       badge: "الأكثر تحميلاً"
     },
@@ -58,7 +58,12 @@ window.VAULT_CONFIG = {
       countLabel: "مجلدين",
       size: "671 MB",
       buttonText: "تحميل المكتبة الكاملة",
-      url: "https://drive.google.com/drive/folders/1qpqtmxWD8_HvYLYVM0xz00I5y5TdE4aG?usp=sharing",
+      // مجلد درايف مينفعش يتحمل مباشرة، فالمكتبة الكاملة = تحميل ملفّي الموسيقى والمؤثرات مع بعض
+      // (لو عندك ملف واحد فيه المكتبة كلها، حط لينكه هنا بدالهم)
+      url: [
+        "https://drive.google.com/file/d/1B-00UwQzO3VR5L_Vp32hHymRsX96onJs/view?usp=sharing",
+        "https://drive.google.com/file/d/1Fepe34wAjnjGvxvr5LapwSJ3o4rWC-XW/view?usp=drive_link"
+      ].join("\n"),
       featured: false
     }
   ],
@@ -84,13 +89,17 @@ window.VAULT_CONFIG = {
 
   /* ---------- السوشيال ---------- */
   social: {
-    youtube:   "https://www.youtube.com/@opaidamazed",
-    facebook:  "https://www.facebook.com/DeOpaida8",
-    instagram: "https://www.instagram.com/opaidamazed",
-    telegram:  "https://t.me/opaidamazed"
+    youtube:   "#",
+    facebook:  "#",
+    instagram: "#",
+    telegram:  "#"
   },
 
   aboutUrl: "about.html",
   aboutBanner: "assets/about-banner.webp",
-  contactUrl: "#"   // لينك التواصل (واتساب / تليجرام ...)
+  /* لينك تواصل إضافي اختياري (واتساب / تليجرام): بيظهر كزرار في صفحة "تواصل معنا" */
+  contactUrl: "#",
+
+  /* صفحة تواصل معنا: الإيميل اللي بتوصله الرسايل */
+  contact: { email: "obaidamazed@gmail.com" }
 };
