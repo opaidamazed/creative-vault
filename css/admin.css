@@ -292,3 +292,87 @@ dialog[open]{animation:adm-dialog-in .25s ease-out}
   #libsList.is-grid .row .acts{gap:4px}
   #libsList.is-grid .row .acts .btn-s{font-size:.62rem;min-height:27px;padding:4px 2px}
 }
+
+
+/* ---------- Balanced library grid cards ---------- */
+#libsList.is-grid{
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));
+  align-items:stretch;
+  gap:16px;
+}
+#libsList.is-grid .row{
+  width:100%;
+  min-width:0;
+  min-height:270px;
+  aspect-ratio:auto;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:72px minmax(0,1fr) auto;
+  gap:12px;
+  padding:18px 16px;
+  justify-items:center;
+  align-content:stretch;
+  text-align:center;
+}
+#libsList.is-grid .row .pic{
+  width:72px;
+  height:72px;
+  border-radius:17px;
+}
+#libsList.is-grid .row>div:nth-child(2){
+  width:100%;
+  min-width:0;
+  align-self:start;
+}
+#libsList.is-grid .row h4{
+  margin:0 0 5px;
+  font-size:.98rem;
+  line-height:1.45;
+}
+#libsList.is-grid .row small{
+  font-size:.76rem;
+  line-height:1.5;
+}
+#libsList.is-grid .row .tags{
+  justify-content:center;
+  gap:7px;
+  margin-top:9px;
+}
+#libsList.is-grid .row .tag{
+  padding:4px 9px;
+  font-size:.7rem;
+}
+#libsList.is-grid .row .acts{
+  width:100%;
+  min-width:0;
+  align-self:end;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+}
+#libsList.is-grid .row .acts .btn-s{
+  min-width:0;
+  min-height:36px;
+  padding:7px 6px;
+  white-space:normal;
+  font-size:.76rem;
+  line-height:1.3;
+}
+@media(max-width:640px){
+  #libsList.is-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+  #libsList.is-grid .row{
+    min-height:238px;
+    padding:12px 9px;
+    grid-template-rows:60px minmax(0,1fr) auto;
+    gap:9px;
+  }
+  #libsList.is-grid .row .pic{width:60px;height:60px}
+  #libsList.is-grid .row h4{font-size:.82rem}
+  #libsList.is-grid .row small{font-size:.68rem}
+  #libsList.is-grid .row .tags{gap:4px;margin-top:7px}
+  #libsList.is-grid .row .tag{font-size:.61rem;padding:3px 6px}
+  #libsList.is-grid .row .acts{gap:5px}
+  #libsList.is-grid .row .acts .btn-s{min-height:31px;font-size:.65rem;padding:5px 3px}
+}
