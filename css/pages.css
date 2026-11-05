@@ -170,3 +170,6 @@
   .contact-grid{grid-template-columns:1fr}
   .cf .row2{grid-template-columns:1fr}
 }
+
+/* رابط داخل رسالة الفورم (الإرسال من تطبيق الإيميل) */
+.form-msg a{color:var(--green);text-decoration:underline;font-weight:800;display:inline-block;margin-inline-start:4px}
