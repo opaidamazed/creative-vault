@@ -4,6 +4,28 @@
    ========================================================== */
 (function () {
   "use strict";
+
+  /* لينكات نظيفة: لو حد دخل بـ .html بنشيلها من شريط العنوان (contact.html ← contact) */
+  try {
+    if (/^https?:$/.test(location.protocol) && /\.html$/i.test(location.pathname)) {
+      const clean = location.pathname.replace(/index\.html$/i, "").replace(/\.html$/i, "");
+      history.replaceState(null, "", (clean || "/") + location.search + location.hash);
+    }
+    sessionStorage.removeItem("v404"); // عدّاد حماية صفحة 404 من التكرار
+  } catch (e) { /* تجاهل */ }
+
+  /* فتح الملفات مباشرة من الجهاز (file://): اللينكات النظيفة مش بتشتغل هناك، فبنضيف .html وقت الضغط */
+  if (location.protocol === "file:") {
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest("a[href]");
+      if (!a || a.target === "_blank") return;
+      const h = a.getAttribute("href");
+      const m = h.match(/^(library|about|contact|details|admin)([?#].*)?$/);
+      const fixed = m ? m[1] + ".html" + (m[2] || "") : (h === "./" ? "index.html" : null);
+      if (fixed) { e.preventDefault(); location.href = fixed; }
+    }, true);
+  }
+
   const C = window.VAULT_CONFIG || {};
   const D = window.VaultData;
   const $ = (s, r = document) => r.querySelector(s);
@@ -82,11 +104,11 @@
   /* ---------- Header / Footer ---------- */
   const hostH = $("#siteHeader"), hostF = $("#siteFooter");
   if (hostH) {
-    const links = [["home", "index.html", "home", "الرئيسية"], ["library", "library.html", "grid", "المكتبة"],
-                   ["about", "about.html", "info", "حول الموقع"], ["contact", "contact.html", "mail", "تواصل معنا"]];
+    const links = [["home", "./", "home", "الرئيسية"], ["library", "library", "grid", "المكتبة"],
+                   ["about", "about", "info", "حول الموقع"], ["contact", "contact", "mail", "تواصل معنا"]];
     hostH.innerHTML = `
     <header class="site-header" id="top"><div class="container header-inner">
-      <a href="index.html" class="brand" aria-label="Creative Vault">
+      <a href="./" class="brand" aria-label="Creative Vault">
         <img src="assets/logo.png" alt="" class="brand-logo" onerror="this.style.display='none'">
         <span class="brand-text"><span>Creative</span><span class="g">Vault</span></span>
       </a>
@@ -107,7 +129,7 @@
         <div><div class="brand-text"><span>Creative</span><span class="g">Vault</span></div><small>Your Creative Resources Hub</small></div>
       </div>
       <nav class="f-links" aria-label="روابط الفوتر">
-        <a href="index.html">الرئيسية</a><a href="library.html">المكتبة</a><a href="about.html">حول الموقع</a><a href="contact.html">تواصل معنا</a>
+        <a href="./">الرئيسية</a><a href="library">المكتبة</a><a href="about">حول الموقع</a><a href="contact">تواصل معنا</a>
       </nav>
       <p class="copy">© ${new Date().getFullYear()} Creative Vault. جميع الحقوق محفوظة.</p>
       <button class="to-top" id="toTop" aria-label="للأعلى">${icon("up")}</button>
@@ -134,13 +156,13 @@
         const t = $("#libraries") || $("#results");
         if (t) t.scrollIntoView({ behavior: "smooth" });
       } else {
-        location.href = "library.html?q=" + encodeURIComponent(input.value.trim());
+        location.href = "library?q=" + encodeURIComponent(input.value.trim());
       }
     });
   }
 
   /* ---------- Cards ---------- */
-  const detailsUrl = (type, id) => `details.html?type=${encodeURIComponent(type)}&id=${encodeURIComponent(id)}`;
+  const detailsUrl = (type, id) => `details?type=${encodeURIComponent(type)}&id=${encodeURIComponent(id)}`;
   V.libCard = (l) => {
     const dl = +l.downloads || 0;
     const link = dlAttrs(l.url);

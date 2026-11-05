@@ -19,9 +19,22 @@
   const btnLabel = btn.textContent;
   const f = form.elements;
 
-  const show = (type, text) => { msg.hidden = false; msg.className = "form-msg " + type; msg.textContent = text; };
+  const show = (type, text, extra) => {
+    msg.hidden = false; msg.className = "form-msg " + type; msg.textContent = text;
+    if (extra) msg.appendChild(extra);
+  };
   const lastSent = () => { try { return +localStorage.getItem(KEY) || 0; } catch (e) { return 0; } };
   const markSent = () => { try { localStorage.setItem(KEY, String(Date.now())); } catch (e) { /* تجاهل */ } };
+
+  /* لو الإرسال فشل: لينك mailto جاهز بنص الرسالة عشان الزائر ما يضيّعش اللي كتبه */
+  function mailtoLink(name, mail, subject, message) {
+    const body = "الاسم: " + name + "\nالإيميل: " + mail + "\n\n" + message;
+    const a = document.createElement("a");
+    a.href = "mailto:" + email + "?subject=" + encodeURIComponent("Creative Vault: " + subject) +
+             "&body=" + encodeURIComponent(body.slice(0, 1500));
+    a.textContent = "ابعتها من تطبيق الإيميل بتاعك";
+    return a;
+  }
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -51,12 +64,22 @@
         signal: ctrl.signal
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok || !(data.success === true || data.success === "true")) throw new Error(data.message || "send failed");
+      if (!res.ok || !(data.success === true || data.success === "true")) {
+        const m = String(data.message || "");
+        console.warn("[contact] FormSubmit رفض الطلب:", res.status, data);
+        const err = new Error(m || ("HTTP " + res.status));
+        err.activation = /activ/i.test(m);
+        throw err;
+      }
       markSent();
       form.reset();
       show("ok", "وصلت رسالتك ✔ هرد عليك على إيميلك في أقرب وقت.");
     } catch (err) {
-      show("err", "تعذّر الإرسال حالياً. جرّب تاني بعد شوية، أو ابعتلي على " + email + " مباشرة.");
+      console.warn("[contact] فشل الإرسال:", err);
+      const text = err && err.activation
+        ? "الفورم لسه محتاج تفعيل لمرة واحدة. لو إنت صاحب الموقع: افتح إيميلك (وفولدر السبام) واضغط Activate في رسالة FormSubmit. أو "
+        : "تعذّر الإرسال حالياً. جرّب تاني بعد شوية، أو ";
+      show("err", text, mailtoLink(name, mail, subject, message));
     } finally {
       clearTimeout(timer);
       btn.disabled = false; btn.textContent = btnLabel;

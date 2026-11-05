@@ -44,7 +44,7 @@
   $("#features").innerHTML = C.features.map((f) => `
     <div class="feat reveal">${icon(f.icon)}<strong>${esc(f.title)}</strong><small>${esc(f.sub)}</small></div>`).join("");
   $("#aboutImg").src = C.aboutBanner;
-  $("#aboutMore").href = C.aboutUrl || "about.html";
+  $("#aboutMore").href = C.aboutUrl || "about";
   $("#sizeNote").textContent = C.sizeNote || "";
 
   /* ---------- Carousel arrows (RTL) ---------- */

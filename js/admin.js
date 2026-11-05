@@ -93,7 +93,7 @@
           <small>${esc(l.count)} ${esc(l.countLabel)} · ${esc(l.size)}</small>
           <div class="tags">${l.featured ? '<span class="tag g">مميز</span>' : ""}<span class="tag">ترتيب ${+l.order || 0}</span><span class="tag">⬇ ${fmt(l.downloads)}</span></div></div>
         <div class="acts">
-          <a class="btn-s" href="details.html?type=library&id=${encodeURIComponent(l.id)}" target="_blank" rel="noopener">معاينة</a><button class="btn-s" data-edit="lib" data-id="${esc(l.id)}" type="button">تعديل</button>
+          <a class="btn-s" href="details?type=library&id=${encodeURIComponent(l.id)}" target="_blank" rel="noopener">معاينة</a><button class="btn-s" data-edit="lib" data-id="${esc(l.id)}" type="button">تعديل</button>
           <button class="btn-s" data-reset="libraries" data-id="${esc(l.id)}" type="button">تصفير العدّاد</button>
           <button class="btn-s danger" data-del="libraries" data-id="${esc(l.id)}" type="button">حذف</button>
         </div></div>`).join("") : '<div class="empty-row">مفيش مكتبات متخزنة.</div>';
@@ -105,7 +105,7 @@
           <small>${esc(x.size || "")} ${x.category && CATS[x.category] ? "· " + esc(CATS[x.category]) : ""}</small>
           <div class="tags">${x.isNew ? '<span class="tag g">NEW</span>' : ""}<span class="tag">⬇ ${fmt(x.downloads)}</span></div></div>
         <div class="acts">
-          <a class="btn-s" href="details.html?type=item&id=${encodeURIComponent(x.id)}" target="_blank" rel="noopener">معاينة</a><button class="btn-s" data-edit="item" data-id="${esc(x.id)}" type="button">تعديل</button>
+          <a class="btn-s" href="details?type=item&id=${encodeURIComponent(x.id)}" target="_blank" rel="noopener">معاينة</a><button class="btn-s" data-edit="item" data-id="${esc(x.id)}" type="button">تعديل</button>
           <button class="btn-s" data-reset="latest" data-id="${esc(x.id)}" type="button">تصفير العدّاد</button>
           <button class="btn-s danger" data-del="latest" data-id="${esc(x.id)}" type="button">حذف</button>
         </div></div>`).join("") : '<div class="empty-row">لسه مفيش إضافات. اضغط "+ إضافة ملحق" عشان تنزّل أول ملحق، وهيظهر في الموقع فوراً.</div>';

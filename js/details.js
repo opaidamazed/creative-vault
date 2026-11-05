@@ -11,7 +11,7 @@
   const notFound = () => {
     title.textContent = "المورد غير موجود";
     lead.textContent = "قد يكون الرابط غير صحيح أو تم حذف هذا المورد.";
-    host.innerHTML = '<div class="detail-empty"><h2>لم نتمكن من العثور على هذا المورد</h2><a class="btn btn-green" href="library.html">العودة إلى المكتبة</a></div>';
+    host.innerHTML = '<div class="detail-empty"><h2>لم نتمكن من العثور على هذا المورد</h2><a class="btn btn-green" href="library">العودة إلى المكتبة</a></div>';
   };
   function render(doc) {
     if (!doc) return notFound();
@@ -38,7 +38,7 @@
           <p class="detail-description">${esc(doc.desc || "لم تتم إضافة وصف تفصيلي لهذا المورد بعد.")}</p>
           ${meta ? '<div class="detail-meta">' + meta + '</div>' : ""}
           <a class="btn btn-green detail-download" href="${esc(link.href)}" ${link.attrs} data-track="${collection}" data-id="${esc(id)}">${V.icon("down")}${esc(doc.buttonText || "تحميل " + (doc.title || "المورد"))}</a>
-          <a class="btn btn-outline detail-back" href="library.html">${V.icon("chev-r")}العودة إلى المكتبة</a>
+          <a class="btn btn-outline detail-back" href="library">${V.icon("chev-r")}العودة إلى المكتبة</a>
         </div>
       </article>
       <section class="contents-panel">
