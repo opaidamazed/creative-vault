@@ -1,7 +1,7 @@
 rules_version = '2';
 
 // الصق الملف ده في: Firebase Console ← Firestore Database ← Rules ← Publish
-// وغيّر ADMIN_EMAIL_HERE لإيميل جوجل بتاعك (نفس الحساب اللي هتدخل به admin.html).
+// وغيّر ADMIN_EMAIL_HERE لإيميل جوجل بتاعك (نفس الحساب اللي هتدخل به صفحة /admin).
 service cloud.firestore {
   match /databases/{database}/documents {
 

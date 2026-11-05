@@ -101,13 +101,13 @@ cd creative-vault
 
 ### 2. Run locally
 
-You can open `index.html` directly to preview the default configuration. To test Firebase features, run a local HTTP server:
+Run the bundled local server. It mimics GitHub Pages, so clean URLs such as `/contact` and the custom `404.html` behave exactly as they do after deployment:
 
 ```bash
-python -m http.server 8000
+python serve.py
 ```
 
-Then visit `http://localhost:8000`.
+Then visit `http://localhost:8000`. (Opening `index.html` directly from disk still works for a quick preview, but Firebase features need the local server.)
 
 ### 3. Configure Firebase (optional)
 
