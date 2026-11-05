@@ -24,7 +24,7 @@ function json(data, status, origin) {
 }
 
 function cleanSingleLine(value, max) {
-  return String(value || "").replace(/[\\r\\n\\t]+/g, " ").trim().slice(0, max);
+  return String(value || "").replace(/[\r\n\t]+/g, " ").trim().slice(0, max);
 }
 
 export default {
@@ -78,7 +78,7 @@ export default {
     const subject = cleanSingleLine(data?.subject, 80);
     const message = String(data?.message || "").trim();
 
-    if (name.length < 2 || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/.test(email) ||
+    if (name.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ||
         !SUBJECTS.has(subject) || message.length < 10 || message.length > 2000) {
       return json({ success: false, error: "invalid_form_data" }, 400, origin);
     }
@@ -108,7 +108,7 @@ export default {
       message,
       "",
       "🕒 وقت الاستلام: " + receivedAt
-    ].join("\\n");
+    ].join("\n");
 
     try {
       const telegramResponse = await fetch(
