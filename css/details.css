@@ -21,3 +21,14 @@
 .contents-empty,.detail-loading,.detail-empty{text-align:center;color:var(--muted);padding:26px}
 .detail-empty{display:grid;justify-items:center;gap:16px}
 @media(max-width:760px){.detail-card{grid-template-columns:1fr;padding:18px}.detail-visual{width:min(100%,380px);min-height:0}.detail-info{justify-items:stretch}.contents-list{grid-template-columns:1fr}.detail-download,.detail-back{width:100%}}
+
+
+/* Item detail thumbnails use a landscape 16:9 frame; library icons remain square. */
+.detail-card.is-item .detail-visual{
+  width:min(100%,520px);
+  aspect-ratio:16 / 9;
+}
+.detail-card.is-item .detail-visual img{
+  object-fit:cover;
+  filter:none;
+}
