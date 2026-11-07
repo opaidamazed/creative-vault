@@ -293,6 +293,51 @@ https://opaidamazed.github.io/creative-vault/
 
 ------------------------------------------------------------------------
 
+## 8. Meme Clips Pack
+
+**Release title**
+
+``` text
+Meme Clips Pack
+```
+
+**Suggested tag**
+
+``` text
+meme-clips-v1
+```
+
+**Release notes**
+
+``` markdown
+A collection of meme video clips for professional video editing, helping editors add humor, reactions, and expressive moments to their creative projects.
+
+### What's included
+- 205 meme video clips
+- 205 video files
+- Archive size before extraction: 543 MB
+
+### Download
+Download `meme.clips.opaida.zip` from the **Assets** section below.
+
+## مقاطع فيديوهات الميمز
+
+مجموعة من مقاطع فيديوهات الميمز المخصصة للاستخدام الاحترافي في المونتاج، تساعدك تضيف لمسات كوميدية وردود فعل وتعبيرات متنوعة لمشاريعك، وتثري محتوى الفيديو بأسلوب إبداعي.
+
+### محتويات الملحق
+- 205 ملف فيديو
+- حجم الملف المضغوط قبل فك الضغط: 543 MB
+
+**Part of [Creative Vault](https://github.com/opaidamazed/creative-vault)** — Your Creative Resources Hub.
+
+If this release is useful, consider starring the repository on GitHub.
+
+Website:
+https://opaidamazed.github.io/creative-vault/
+```
+
+------------------------------------------------------------------------
+
 ## Publishing checklist
 
 - Create a separate GitHub Release for each library or resource pack.
