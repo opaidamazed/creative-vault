@@ -30,7 +30,7 @@
       typeof doc.downloads === "number" ? '<span><b>مرات التحميل</b>' + esc(V.fmt(doc.downloads)) + '</span>' : ""
     ].filter(Boolean).join("");
     host.innerHTML = `
-      <article class="detail-card">
+      <article class="detail-card ${isLib ? "is-library" : "is-item"}">
         <div class="detail-visual">${image ? '<img src="' + esc(V.safeImg(image)) + '" alt="' + esc(doc.title || "") + '">' : '<div class="detail-placeholder">' + V.icon("file") + '</div>'}</div>
         <div class="detail-info">
           <span class="detail-kicker">${isLib ? "مكتبة من Creative Vault" : "ملحق من Creative Vault"}</span>
